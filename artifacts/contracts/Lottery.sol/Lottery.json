@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "Lottery",
+  "sourceName": "contracts/Lottery.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea264697066735822122015c81a13acecc3a28206e87f3b6c43e4fe357132d701ad3b9be6d3a1e46430f464736f6c63430008110033",
+  "deployedBytecode": "0x6080604052600080fdfea264697066735822122015c81a13acecc3a28206e87f3b6c43e4fe357132d701ad3b9be6d3a1e46430f464736f6c63430008110033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
