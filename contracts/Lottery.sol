@@ -27,6 +27,8 @@ contract Lottery is VRFConsumerBaseV2 {
 
     //events
     event participatedEvent(address indexed player);
+    event RequestedLotteryWinner(unit256 indexed requestId);
+
 
     constructor(address vrfCoordinatorV2, uint256 entranceFee, bytes32 keyHash, uint64 subscriptionId, uint32 callbackGasLimit) VRFConsumerBaseV2(vrfCoordinatorV2) {
         i_entranceFee = entranceFee;
@@ -73,13 +75,17 @@ contract Lottery is VRFConsumerBaseV2 {
         // this can be cross checked with the original/template VRF Code
         // of VRFConsumerBaseV2.sol that we imported above
         // also on random generator page on chainlink
-        i_vrfCoordinator.requestRandomWords(
+
+
+        uint256 requestId = i_vrfCoordinator.requestRandomWords( //returns requestId + other related info
             i_keyHash, // max gas willing to pay in gwei, see: https://docs.chain.link/vrf/v2/subscription/supported-networks/
             i_subscriptionId,
             REQUEST_CONFIRMATIONS, // how many blocks to wait for confirmation
             callbackGasLimit, //sets GAS limit on fulfillRandomWords's computation
             NUM_WORDS
-        )
+        );
+
+        emit RequestedLotteryWinner(requestId)
 
 
 
