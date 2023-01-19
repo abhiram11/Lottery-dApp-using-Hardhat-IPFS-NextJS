@@ -8,9 +8,11 @@
 
 pragma solidity ^0.8.7;
 
+import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
+
 error Lottery__NotEnoughETHEntered();
 
-contract Lottery {
+contract Lottery is VRFConsumerBaseV2 {
 
     //state variables = storage
     uint256 private immutable i_entranceFee;
@@ -19,7 +21,7 @@ contract Lottery {
     //events
     event participatedEvent(address indexed player);
 
-    constructor(uint256 entranceFee) {
+    constructor(address vrfCoordinatorV2, uint256 entranceFee) VRFConsumerBaseV2(vrfCoordinatorV2) {
         i_entranceFee = entranceFee;
     }
 
@@ -49,6 +51,18 @@ contract Lottery {
     // Steps: Go to chainlink, connect Metamask wallet, add Goerli Testnet and LINK
     // Create Subscription, Add funds
     // Create Consumer, add consumer contract with address = VRFv2Consumer.sol contract 
-    function randomWinner() {}
+
+    // we call 2 txn process, so remove hackablility, manipulation, etc. if only one txn
+    // 1) requestRandomWinner
+    // 2) fulfillRandomWords (VRF ki method hai)
+
+    function requestRandomWinner() external { //external are a bit cheaper than PUBLIC functions
+        // called by chainlink Keepers automatically (automated)
+
+    }
+
+    //here, words still means numbers
+    // "override" function of THIS CONTRACT <=> "virtual" function of INHERITED CONTRACT
+    function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {}
 
 }
