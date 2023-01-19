@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\STUDY - All Technologies\\Blockchain\\Lottery-dApp-using-Hardhat-IPFS-NextJS\\contracts\\Lottery.sol": {
-      "lastModificationDate": 1674161188149,
-      "contentHash": "df62d107cec979a872ac9045bc8a35d0",
+      "lastModificationDate": 1674164366499,
+      "contentHash": "12b82979fed53e54fa591880bd5f56a6",
       "sourceName": "contracts/Lottery.sol",
       "solcConfig": {
         "version": "0.8.17",
