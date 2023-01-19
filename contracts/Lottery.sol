@@ -45,6 +45,10 @@ contract Lottery {
         return s_players[index];
     }
 
-    // function randomWinner() {}
+    //here we need Chainlink VRF v2 and Keepers
+    // Steps: Go to chainlink, connect Metamask wallet, add Goerli Testnet and LINK
+    // Create Subscription, Add funds
+    // Create Consumer, add consumer contract with address = VRFv2Consumer.sol contract 
+    function randomWinner() {}
 
 }
