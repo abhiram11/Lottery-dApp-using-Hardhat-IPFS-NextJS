@@ -6,6 +6,19 @@
 // Winner selected every X minutes = completely automated
 // Chainlink Oracle -> Randomness + Automated Execution using Chainlink Keeper
 
+
+
+
+
+
+// 14:56:30
+
+
+
+
+
+
+
 pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
@@ -13,6 +26,12 @@ import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 
 error Lottery__NotEnoughETHEntered();
 error Lottery__TransferFailed();
+
+/** @title Lottery Contract
+    @author Abhiram Satpute
+    @notice This contract creates an untamperable, decentralized, NON-automated smart contract
+    @dev Implements Chainlink VRFv2
+ */
 
 contract Lottery is VRFConsumerBaseV2 {
 
@@ -29,12 +48,12 @@ contract Lottery is VRFConsumerBaseV2 {
     // Lottery Variables
     address private s_recentWinner; //start as none, then fill
 
-    //events
+    // Events
     event participatedEvent(address indexed player);
     event RequestedLotteryWinner(uint256 indexed requestId);
     event WinnerPicked(address indexed winner);
 
-
+    // Constructor
     constructor(address vrfCoordinatorV2, uint256 entranceFee, bytes32 keyHash, uint64 subscriptionId, uint32 callbackGasLimit) VRFConsumerBaseV2(vrfCoordinatorV2) {
         i_entranceFee = entranceFee;
         i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2); //now we can access the random gen contract, this is the address
@@ -43,6 +62,7 @@ contract Lottery is VRFConsumerBaseV2 {
         i_callbackGasLimit = callbackGasLimit;
     }
 
+    // View / Pure Functions and Getters
     function getEntranceFee() public view returns(uint256) {
         return i_entranceFee;
     }
@@ -55,6 +75,11 @@ contract Lottery is VRFConsumerBaseV2 {
         return s_recentWinner;
     }
 
+    function getNumberOfPlayers() public view returns(uint256) {
+        return s_players.length;
+    }
+
+    // Functions
     function lotteryParticipate() public payable {
 
         if (msg.value < i_entranceFee) {
