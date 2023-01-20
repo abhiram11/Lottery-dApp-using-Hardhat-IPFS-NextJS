@@ -6,6 +6,19 @@
 // Winner selected every X minutes = completely automated
 // Chainlink Oracle -> Randomness + Automated Execution using Chainlink Keeper
 
+
+
+
+
+
+// 14:56:30
+
+
+
+
+
+
+
 pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
